@@ -1,17 +1,17 @@
 <launch>
 
     <param name="use_sim_time" value="true"/>
-    <arg name="fssim_config" default="$(find fssim_interface)/fssim_config/local_simulation.yaml"/>
+    <arg name="fssim_config" default="$(find fssim_interface)/fssim_config/calibration_simulation.yaml"/>
 
     <include file="$(find fssim)/launch/start.launch">
         <arg name="fssim_config" value="$(arg fssim_config)"/>
     </include>
 
-    <include file="$(find fssim_interface)/launch/rviz.launch"/>
+    <node name="fssim_rviz" pkg="rviz" type="rviz" args="-d $(find fssim_interface)/rviz/calibration.rviz"/>
 
     <include file="$(find fssim_interface)/launch/only_interface.launch"/>
 
-    <!--   Reduce frequency of a topic to desired Hz     -->
+	<!--   Reduce frequency of a topic to desired Hz     -->
     <node pkg="topic_tools" type="throttle" name="throttle_state" args="messages /estimation/slam/state 5 /estimation/slam/state_throttle" />
 <!--  <node pkg="topic_tools" type="throttle" name="throttle_cones" args="messages /camera/cones 50 /camera/cones_throttle" />-->
 

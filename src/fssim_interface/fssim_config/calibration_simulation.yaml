@@ -1,0 +1,33 @@
+simulation_name: "Testing what gets wrong first"
+
+robot_name: gotthard  # Name of the robot [string]
+kill_after: 6000      # After this time, repetition is stopped [s]
+
+pkg_config_storage: fssim_interface # If relative path is given in following config files, the path will be taken
+                                    # wrt to this package
+# Config files for repetitions
+repetitions:
+- {sensors_config_file: fssim_config/sensors/sensors_1.yaml, track_name: /calibration_tracks/yellow_x1.sdf, autonomous_stack: }
+
+# Checks which must be true in order to automatically press RES GO
+res:
+  checks:
+    is_in_track: true
+
+# Launch files for autonomous missions
+launch_file:
+  rosbag_record: 
+
+####################################
+######## Possible Tracks ###########
+####################################
+# calibration_tracks/yellow_x1.sdf
+# calibration_tracks/yellow_x2.sdf
+# calibration_tracks/yellow_x3.sdf
+# calibration_tracks/yellow_x4.sdf
+# calibration_tracks/yellow_x5.sdf
+# calibration_tracks/yellow_x6.sdf
+# calibration_tracks/yellow_x7.sdf
+# calibration_tracks/yellow_x8.sdf
+# calibration_tracks/yellow_x9.sdf
+# calibration_tracks/yellow_x10.sdf

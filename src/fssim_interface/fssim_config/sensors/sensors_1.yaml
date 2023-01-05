@@ -44,17 +44,17 @@ sensors:
   lidar_pipeline:
     enabled: true
     node_name: lidar_pipeline             # This name MUST BE the SAME to this section yaml file
-    topic_name: /lidar/cones              # Where should the cones be published
+    topic_name: /fssim/lidar/cones              # Where should the cones be published
     overwrite:
       enabled: true
       frame: gotthard/base_link           # Frame the cones are represented in
     rate: 10                              # Publishing frequency [Hz]
     delay: 
-      time: 0.2                           # Delay [s]
-      noise_sigma: 0.002                  # Additive gassian noise on delay 
+      time: 0.1                           # Delay [s]
+      noise_sigma: 0.001                  # Additive gassian noise on delay 
     cut_cones_below_x:            -1      # Cut cones that are further than this distance in x car axis
 
-    observation_radius:           15.0    # Below this threshold we can observe cones [m]
+    observation_radius:           10.0    # Below this threshold we can observe cones [m]
     distance_dependent_observation: 100.0 # The probability of observation decreases with factor = -1/distance_dependent_misclass * r + 1
     observation_likelihood_left:  1.0     # Likelihood of observing left              [0..1]
     observation_likelihood_right: 1.0     # Likelihood of observing right             [0..1]
@@ -62,9 +62,9 @@ sensors:
     
     color_observation_radius:     10.0    # We can obser color only below this threshild [m]
     distance_dependent_misclass:  200.0   # The probability of color observation decreases with factor = -1/distance_dependent_misclass * r + 1
-    likelihood_yellow:            0.8     # Likelihood of observic color of cones left  [0..1]
-    likelihood_blue:              0.8     # Likelihood of observic color of cones right [0..1]
-    likelihood_orange:            0.8     # Likelihood of observic color of cones right [0..1]
+    likelihood_yellow:            1       # Likelihood of observic color of cones left  [0..1]
+    likelihood_blue:              1       # Likelihood of observic color of cones right [0..1]
+    likelihood_orange:            1       # Likelihood of observic color of cones right [0..1]
 
     gaussian_noise_xy_mu:         0.0     # Mean of Gaussian noise on [x,y] cone position
     gaussian_noise_xy_sigma:      0.0     # Variance of Gaussian noise on [x,y] cone position
@@ -78,11 +78,11 @@ sensors:
   camera_pipeline:
     enabled: true
     node_name: camera_pipeline
-    topic_name: /camera/cones
+    topic_name: /fssim/camera/cones
     overwrite:
       enabled: true
       frame: gotthard/base_link           # Frame the cones are represented in
-    rate: 10                              # Publishing frequency [Hz]
+    rate: 20                              # Publishing frequency [Hz]
     delay: 
       time: 0.2                           # Delay [s]
       noise_sigma: 0.002                  # Additive gassian noise on delay 
