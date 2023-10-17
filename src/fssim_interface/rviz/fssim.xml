@@ -35,7 +35,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/control/pure_pursuit/control_command</topic>
+                                    <topic>/sgt/control_command</topic>
                                     <type>fsd_common_msgs/ControlCommand</type>
                                 </x_axis>
                                 <y_axis>
@@ -46,9 +46,9 @@
                                         <absolute_minimum>-0.5</absolute_minimum>
                                         <relative_maximum>0</relative_maximum>
                                         <relative_minimum>-1000</relative_minimum>
-                                        <type>1</type>
+                                        <type>0</type>
                                     </scale>
-                                    <topic>/control/pure_pursuit/control_command</topic>
+                                    <topic>/sgt/control_command</topic>
                                     <type>fsd_common_msgs/ControlCommand</type>
                                 </y_axis>
                             </axes>
@@ -58,7 +58,7 @@
                             </color>
                             <data>
                                 <circular_buffer_capacity>1000</circular_buffer_capacity>
-                                <time_frame_length>20</time_frame_length>
+                                <time_frame_length>2</time_frame_length>
                                 <type>3</type>
                             </data>
                             <style>
@@ -78,7 +78,7 @@
                     <legend>
                         <visible>true</visible>
                     </legend>
-                    <plot_rate>30</plot_rate>
+                    <plot_rate>5</plot_rate>
                     <title>Car command</title>
                 </column_0>
                 <column_1>
@@ -254,7 +254,7 @@
                     <legend>
                         <visible>true</visible>
                     </legend>
-                    <plot_rate>30</plot_rate>
+                    <plot_rate>10</plot_rate>
                     <title>Velocities</title>
                 </column_1>
             </row_0>
@@ -287,7 +287,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/control/pure_pursuit/control_command</topic>
+                                    <topic>/sgt/control_command</topic>
                                     <type>fsd_common_msgs/ControlCommand</type>
                                 </x_axis>
                                 <y_axis>
@@ -300,7 +300,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/control/pure_pursuit/control_command</topic>
+                                    <topic>/sgt/control_command</topic>
                                     <type>fsd_common_msgs/ControlCommand</type>
                                 </y_axis>
                             </axes>
@@ -310,7 +310,7 @@
                             </color>
                             <data>
                                 <circular_buffer_capacity>1000</circular_buffer_capacity>
-                                <time_frame_length>10</time_frame_length>
+                                <time_frame_length>2</time_frame_length>
                                 <type>3</type>
                             </data>
                             <style>
@@ -330,7 +330,7 @@
                     <legend>
                         <visible>true</visible>
                     </legend>
-                    <plot_rate>30</plot_rate>
+                    <plot_rate>5</plot_rate>
                     <title>Car Command</title>
                 </column_0>
                 <column_1>

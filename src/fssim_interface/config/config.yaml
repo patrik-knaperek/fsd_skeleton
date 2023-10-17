@@ -29,12 +29,13 @@ fssim:
 
 fsd:
   vel: "/estimation/velocity_estimation/velocity_estimation"
-  cmd: "/control/pure_pursuit/control_command"
+  # cmd: "/control/pure_pursuit/control_command"
+  cmd: "/sgt/control_command"
   res: "/res/state"
   state: "/estimation/slam/state"
   map: "/estimation/slam/map"
   mission_finnished: "/control/mission_finished"
   tf:
-    origin: "/map"
-    fsd_car_base_link: "/gotthard/base_link"
+    origin: "map"
+    fsd_car_base_link: "gotthard/base_link"
     publish_car_base_link: true

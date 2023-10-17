@@ -12,7 +12,7 @@ repetitions:
 # Checks which must be true in order to automatically press RES GO
 res:
   checks:
-    is_in_track: true
+    is_in_track: false
 
 # Launch files for autonomous missions
 launch_file:
