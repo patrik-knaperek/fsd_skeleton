@@ -38,3 +38,5 @@ clion-cmake/*
 
 # Profiler files
 *.prof
+
+fssim/

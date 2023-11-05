@@ -20,7 +20,7 @@ FSD_WORKPACKAGES=(
     '3_control'
 )
 
-BLACKLIST_PACKAGES=''
+SKIPLIST_PACKAGES=''
 
 ###################################
 # Decide whether to include fssim #
@@ -34,7 +34,7 @@ esac
 printf "FSSIM is..."
 if [ -z $FSSIM ]; then
     echo "DISABLED"
-    BLACKLIST_PACKAGES='fssim_interface fssim'
+    SKIPLIST_PACKAGES='fssim_interface fssim'
 else 
     echo "ENABLED"
     FSD_WORKPACKAGES=("${FSD_WORKPACKAGES[@]}" 'fssim_interface')
@@ -179,12 +179,12 @@ fi
 #################################################
 # 			Configure catkin workpace 			#
 #################################################
-echo "Blacklisting packages: " ${BLACKLIST_PACKAGES}
+echo "Blacklisting packages: " ${SKIPLIST_PACKAGES}
 catkin init
-if [ -n "${BLACKLIST_PACKAGES}" ]; then
-	catkin config --blacklist ${BLACKLIST_PACKAGES} --cmake-args -DCMAKE_BUILD_TYPE=Release
+if [ -n "${SKIPLIST_PACKAGES}" ]; then
+	catkin config --skiplist ${SKIPLIST_PACKAGES} --cmake-args -DCMAKE_BUILD_TYPE=Release
 else
-	catkin config --no-blacklist --cmake-args -DCMAKE_BUILD_TYPE=Release
+	catkin config --no-skiplist --cmake-args -DCMAKE_BUILD_TYPE=Release
 fi
 
 #################################################

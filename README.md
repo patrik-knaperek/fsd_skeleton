@@ -36,7 +36,7 @@ $ cd <target_path>/fsd_skeleton/src
 $ git clone https://gitlab.com/sgt-driverless/simulation/fssim.git
 $ cd ./fssim
 $ ./update_dependencies.sh
-$ catkin config --no-blacklist
+$ catkin config --no-skiplist
 $ catkin build
 $ FSD_source
 ```
