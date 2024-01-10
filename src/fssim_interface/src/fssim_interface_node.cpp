@@ -38,6 +38,8 @@ static ros::Subscriber sub_fssim_track;
 static ros::Publisher pub_fssim_cmd;
 static ros::Publisher pub_fssim_mission_finnished;
 
+static ros::Time last_tf_time_;
+
 // FSD_CAR
 static ros::Subscriber sub_fsd_car_command;
 static ros::Subscriber sub_fsd_mission_finnished;
@@ -55,14 +57,20 @@ static tf::TransformBroadcaster *br = nullptr;
 void callbackFssimOdom(const fssim_common::State::ConstPtr &msg) {
     pub_fsd_vel.publish(gotthard::getStateDt(*msg));
     pub_fsd_state.publish(gotthard::getState(*msg));
-
+    
     if (tf_base_link) {
         tf::Transform transform;
         transform.setOrigin(tf::Vector3(msg->x, msg->y, 0.0));
         tf::Quaternion q;
         q.setRPY(0, 0, msg->yaw);
         transform.setRotation(q);
-        br->sendTransform(tf::StampedTransform(transform, msg->header.stamp, origin, fsd_vehicle));
+        
+        if (last_tf_time_ < msg->header.stamp)
+        {
+            br->sendTransform(tf::StampedTransform(transform, msg->header.stamp, origin, fsd_vehicle));
+            last_tf_time_ = msg->header.stamp;
+        }
+        
     }
 }
 
