@@ -32,9 +32,17 @@ sensors:
     enabled: false
     topic: lidar/raw
     pos:
-      x: 0.75
+      x: 0.835
       y: 0.0
       z: 0.15
+
+  camera:
+    enabled: false
+    topic: camera/raw
+    pos:
+      x: -1.14
+      y: 0.0
+      z: 0.9
 
   velocity:
     noise_vx_sigma:  0.01                # Sigma of gaussian noise on respectible velocity estimate
@@ -47,8 +55,8 @@ sensors:
     topic_name: /fssim/lidar/cones              # Where should the cones be published
     overwrite:
       enabled: true
-      frame: gotthard/base_link           # Frame the cones are represented in
-    rate: 10                              # Publishing frequency [Hz]
+      frame: fssim/vehicle/front_center_lidar_link     # Frame the cones are represented in
+    rate: 20                              # Publishing frequency [Hz]
     delay: 
       time: 0.1                           # Delay [s]
       noise_sigma: 0.001                  # Additive gassian noise on delay 
@@ -81,7 +89,7 @@ sensors:
     topic_name: /fssim/camera/cones
     overwrite:
       enabled: true
-      frame: gotthard/base_link           # Frame the cones are represented in
+      frame: fssim/vehicle/camera_center_link           # Frame the cones are represented in
     rate: 20                              # Publishing frequency [Hz]
     delay: 
       time: 0.2                           # Delay [s]
