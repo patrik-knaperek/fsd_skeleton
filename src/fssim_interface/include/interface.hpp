@@ -104,12 +104,12 @@ fsd_common_msgs::Map getMap(const fssim_common::Track &track) {
     fsd_common_msgs::Map msg;
     msg.header = track.header;
     msg.cone_yellow.clear();
-    for (const geometry_msgs::Point &c : track.cones_left) {
+    for (const geometry_msgs::Point &c : track.cones_right) {
         msg.cone_yellow.push_back(getConeFromPoint(c, "yellow"));
     }
 
     msg.cone_blue.clear();
-    for (const geometry_msgs::Point &c : track.cones_right) {
+    for (const geometry_msgs::Point &c : track.cones_left) {
         msg.cone_blue.push_back(getConeFromPoint(c, "blue"));
     }
     return msg;
