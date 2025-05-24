@@ -21,7 +21,7 @@ This is an installation manual for FSSIM alongside with `fsd_skeleton` environme
 ### Install AMZ FSD skeleton
 ```sh
 $ cd <target_path>
-$ git clone https://gitlab.com/sgt-driverless/simulation/fsd_skeleton.git
+$ git clone --recurse-submodules https://gitlab.com/sgt-driverless/simulation/fsd_skeleton.git
 $ cd ./fsd_skeleton
 $ chmod +x update_dependencies.sh
 $ ./update_dependencies.sh
@@ -32,9 +32,7 @@ Restart terminal
 
 ### Install FSSIM
 ```sh
-$ cd <target_path>/fsd_skeleton/src
-$ git clone https://gitlab.com/sgt-driverless/simulation/fssim.git
-$ cd ./fssim
+$ cd <target_path>/fsd_skeleton/src/fssim
 $ ./update_dependencies.sh
 $ catkin config --no-skiplist
 $ catkin build
@@ -43,7 +41,7 @@ $ FSD_source
 ## Launch
 ### Configuration
 * [sensors_1.yaml](./src/fssim_interface/fssim_config/sensors/sensors_1.yaml)
-    - cone detection characteristics
+    - cone detection measurement characteristics
 * [pure_pursuit.yaml](./src/3_control/control_pure_pursuit/config/pure_pursuit.yaml)
     - max speed (if using FSD control)
 * [local_simulation.yaml](./src/fssim_interface/fssim_config/local_simulation.yaml), [calibration_simulation.yaml](./src/fssim_interface/fssim_config/calibration_simulation.yaml)

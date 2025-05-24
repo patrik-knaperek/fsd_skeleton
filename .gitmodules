@@ -1,0 +1,3 @@
+[submodule "src/fssim"]
+	path = src/fssim
+	url = git@github.com:patrik-knaperek/fssim.git
