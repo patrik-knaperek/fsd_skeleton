@@ -24,12 +24,13 @@ cmake_minimum_required(VERSION 3.0.2)
 
 project(fssim_interface)
 
-## Compile as C++11, supported in ROS melodic and newer
-add_compile_options(-std=c++11)
+## Compile as C++17, supported in ROS noetic
+add_compile_options(-std=c++17)
 
 find_package(catkin REQUIRED COMPONENTS
         roscpp
         rospy
+        roslib
         std_msgs
         nav_msgs
         tf

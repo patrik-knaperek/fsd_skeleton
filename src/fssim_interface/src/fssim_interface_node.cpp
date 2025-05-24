@@ -22,6 +22,8 @@
  * SOFTWARE.
  */
 
+#include <cstdlib>
+
 // ROS Includes
 #include "ros/ros.h"
 
@@ -29,6 +31,8 @@
 #include "tf/transform_broadcaster.h"
 
 #include "interface.hpp"
+
+static ros::ServiceServer ser_reset_fssim;
 
 // FSSIM
 static ros::Subscriber sub_fssim_odom;
@@ -53,6 +57,14 @@ static bool                     tf_base_link = false;
 static std::string              fsd_vehicle;
 static std::string              origin;
 static tf::TransformBroadcaster *br = nullptr;
+
+bool callbackResetFssim(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res) {
+    const auto ret_val = fssim::resetSimulation();
+    
+    res.success = ret_val.first;
+    res.message = ret_val.second;
+    return true;
+}
 
 void callbackFssimOdom(const fssim_common::State::ConstPtr &msg) {
     pub_fsd_vel.publish(gotthard::getStateDt(*msg));
@@ -98,6 +110,8 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "fssim_interface");
     ros::NodeHandle n("~");
 
+    ser_reset_fssim = n.advertiseService("reset_fssim", callbackResetFssim);
+    
     br = new tf::TransformBroadcaster();
 
     sub_fsd_car_command = n.subscribe(getParam<std::string>(n, "fsd/cmd"), 1, callbackFsdCmd);
