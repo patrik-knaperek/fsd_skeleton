@@ -62,6 +62,15 @@ Launch for calibration:
 $ roslaunch fssim_interface fssim_calibration.launch
 ```
 
+### Restart FSSIM
+During launch, the most time-consuming element is Gazebo node. During testing, it is annoying to always terminate the whole `fssim.launch` and then wait until it loads again (in case we want to test new configuration). To avoid this, we add a shortcut - `reset_fssim` service.
+
+By calling
+```sh
+$ rosservice call /fssim_interface/reset_fssim "{}"
+```
+it is possible to reset the car pose to the starting position and reload the Gazebo simulation while keeping the node running.
+
 ### Launch FSD control
 ```sh
 $ FSD_source

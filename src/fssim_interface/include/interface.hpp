@@ -64,57 +64,7 @@ fssim_common::Mission getFssimMissionFinnished(const fsd_common_msgs::Mission &m
     return mis;
 }
 
-std::pair<bool, std::string> resetSimulation(void) {
-    std::pair<bool, std::string> ret_val(true, "");
-    
-    ROS_WARN("Resetting FSSIM session");
-    
-    ROS_INFO("Shutting down node /fssim_robot_state_publisher");
-    if(system("rosnode kill /fssim_robot_state_publisher")) {
-        ret_val.first = false;
-        ret_val.second += "\n Failed to execute command: rosnode kill /fssim_robot_state_publisher";
-    }
-
-    ROS_INFO("Deleting Gazebo model");
-    gazebo_msgs::DeleteModel delete_srv;
-    delete_srv.request.model_name = std::string("gotthard");
-    if(!ros::service::call("/gazebo/delete_model", delete_srv)) {
-      ret_val.first = false;
-      ret_val.second += "\n Failed to call service: /gazebo/delete_model";
-    }
-
-    ROS_INFO("Resetting Gazebo simulation");
-    std_srvs::Empty reset_srv;
-    if(!ros::service::call("/gazebo/reset_simulation", reset_srv)) {
-      ret_val.first = false;
-      ret_val.second += "\n Failed to call service: /gazebo/reset_simulation";
-    }
-
-    ROS_INFO("Reloading car model");
-    std::string path_to_pkg = ros::package::getPath("fssim_interface");
-    std::string launch_cmd = std::string("roslaunch fssim_gazebo car_model_gazebo.launch \
-        robot_name:=\"gotthard\" sensors_config_file:=") 
-        + path_to_pkg + std::string("/fssim_config/sensors/sensors_1.yaml &");
-    if(system(launch_cmd.c_str())) {
-        
-        ret_val.first = false;
-        ret_val.second += "\n Failed to launch file: car_model_gazebo.launch";
-    }
-
-    if(ret_val.first) {
-        sleep(5);
-
-        ROS_WARN("Sending RES GO; FSSIM reloaded successfully!");
-        if(system("rostopic pub -1 /fssim/res_state fssim_common/ResState \
-        \"{emergency: false, on_off_switch: false, push_button: true, communication_interrupted: false}\"")) {
-            ret_val.first = false;
-            ret_val.second += "\n Failed to execute command: rostopic pub -1 /fssim/res_state fssim_common/ResState";
-        }
-    }
-    
-    
-    return ret_val;
-}
+std::pair<bool, std::string> resetSimulation(void);
 
 }  // namespace fssim
 
